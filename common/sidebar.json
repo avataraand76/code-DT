@@ -1,0 +1,62 @@
+[
+  {
+    "url_pattern": ["/", "/home", "/dashboard"],
+    "name_screen": "Dashboard",
+    "icon": "nav-icon fas fa-tachometer-alt",
+    "id": "",
+    "icon_child": "",
+    "child_url": []
+  },
+  {
+    "url_pattern": [],
+    "name_screen": "SAMPLE",
+    "icon": "nav-icon fas fa-table",
+    "id": "menu_sample",
+    "icon_child": "fas fa-angle-left right",
+    "child_url": [
+      {
+        "url_pattern": "/sample/sample_dev/",
+        "name_screen": "Sample Dev",
+        "icon": ""
+      },
+      {
+        "url_pattern": "/sample/new_color/",
+        "name_screen": "Màu mới",
+        "icon": ""
+      }
+      ,{
+        "url_pattern": "/sample/fab/",
+        "name_screen": "FAB",
+        "icon": ""
+      }
+    ]
+  },
+  {
+    "url_pattern": "",
+    "name_screen": "",
+    "icon": "",
+    "id": "",
+    "icon_child": "",
+    "child_url": [
+      {
+        "url_pattern": "",
+        "name_screen": "",
+        "icon": ""
+      }
+    ]
+  },
+  {
+    "url_pattern": "",
+    "name_screen": "",
+    "icon": "",
+    "id": "",
+    "icon_child": "",
+    "child_url": [
+      {
+        "url_pattern": "",
+        "name_screen": "",
+        "icon": ""
+      }
+    ]
+  }
+]

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/js/common.js"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://icons.getbootstrap.com/assets/font/bootstrap-icons.min.css" />
+  </head>
+  <body>
+    <div class="container-fluid content">
+      <div class="row">
+        <div class="col-2 fulldisplay" id="sidebar">
+          <%- include('modue/sidebar') %>
+        </div>
+        <div class="col fulldisplay">
+          <div class="row fulldisplay"><%- include('modue/header') %></div>
+          <div class="row fulldisplay">
+            <h2>Sample Dev</h2>
+            <div id="tableContainer"><%- include('modue/table') %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('modue/footer') %>
+  </body>
+</html>

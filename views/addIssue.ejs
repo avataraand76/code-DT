@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/nucleo-svg.css" />
+    <link rel="stylesheet" href="/css/nucleo-icons.css" />
+    <link rel="stylesheet" href="/css/soft-ui-dashboard.min.css" />
+    <link rel="stylesheet" href="/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script>
+      var data = <%- JSON.stringify(data) %>;
+    </script>
+    <script>
+      var status_input = <%- status_input %>;
+      if (status_input === true) {
+        alert("Ghi Nhận Vấn Đề Thành Công!!!");
+      }
+    </script>
+  </head>
+  <body class="g-sidenav-show bg-gray-100">
+    <!-- Sidebar -->
+    <%- include('modue/sidebar') %>
+    <!-- Main Content -->
+    <main
+      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ps ps--active-y"
+    >
+      <!-- Header -->
+      <%- include('modue/header') %>
+      <!-- Screens -->
+      <div class="container-fluid py-4 scrollable-area" id="main_content">
+        <div class="row ml-3 mr-3">
+          <form action="/ghi_nhan_van_de" method="post" class="needs-validation" novalidate>
+            <div class="form-group">
+              <label for="teamSelect">Chọn Team</label>
+              <select class="form-control form-control-sm" id="teamSelect" name="team" required>
+              </select>
+              <div class="invalid-feedback">
+                Vui lòng nhập giá trị cho trường này.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="deviceSelect">Chọn Máy</label>
+              <select class="form-control form-control-sm " id="deviceSelect" name="device" required>
+              </select>
+              <div class="invalid-feedback">
+                Vui lòng nhập giá trị cho trường này.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputProductOld"  id="productOld">Nhập Mã hàng</label>
+              <div class="display_align-items_center">
+                <input
+                  type="text"
+                  class="form-control form-control-sm col-6 txt_issue"
+                  id="inputProductOld"
+                  name="product"
+                  placeholder="Nhập Mã hàng" required
+                />
+                <div class="form-check form-switch ml-2">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="transition_product">
+                  <label class="form-check-label" for="flexSwitchCheckChecked">chuyển đổi Job</label>
+                </div>
+            </div>
+          </div>
+          <div class="form-group d-none" id="productNew">
+            <label for="inputProductNew">Nhập Mã Hàng Mới</label>              
+            <input type="text" class="form-control form-control-sm col-7 txt_issue"
+                  id="inputProductNew" name="productnew" placeholder="Nhập Mã hàng" />
+                  <div class="invalid-feedback">
+                    Vui lòng nhập giá trị cho trường này.
+                  </div>
+          </div>
+          <div class="form-group">
+            <label for="inputcolorOld"  id="colorOld">Nhập Màu</label>
+            <div class="display_align-items_center">
+              <input
+                type="text"
+                class="form-control form-control-sm col-6 txt_issue"
+                id="inputcolortOld"
+                name="color"
+                placeholder="Nhập Màu" required
+              />
+              <div class="form-check form-switch ml-2">
+                <input class="form-check-input" type="checkbox" id="flexSwitchColorCheckChecked" name="transition_color">
+                <label class="form-check-label" for="flexSwitchColorCheckChecked">chuyển đổi Màu</label>
+              </div>
+          </div>
+        </div>
+        <div class="form-group d-none" id="colorNew">
+          <label for="inputcolorNew">Nhập Màu Mới</label>              
+          <input type="text" class="form-control form-control-sm col-7 txt_issue"
+                id="inputcolorNew" name="colornew" placeholder="Nhập Màu Mới" />
+                <div class="invalid-feedback">
+                  Vui lòng nhập giá trị cho trường này.
+                </div>
+        </div>
+            <div class="form-group">
+              <label for="typeIssueSelect">Chọn Loại Vấn Đề</label>              
+              <select class="form-control form-control-sm" id="typeIssueSelect" name="typeIssue" required>
+              </select>
+              <div class="invalid-feedback">
+                Vui lòng nhập giá trị cho trường này.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="issueSelect">Chọn Vấn Đề</label>              
+              <select class="form-control form-control-sm" id="issueSelect" name="issue" required>
+              </select>
+              <input type="text" class="form-control form-control-sm txt_issue mt-2 d-none"
+                id="inputissue" name="issueOther" placeholder="Nhập Vấn Đề" />
+              <div class="invalid-feedback">
+                Vui lòng nhập giá trị cho trường này.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="personLogIssueSelect">Chọn Người Ghi Nhận</label>              
+              <select class="form-control form-control-sm" id="personLogIssueSelect" name="personLogIssue" required>
+              </select>
+              <div class="invalid-feedback">
+                Vui lòng nhập giá trị cho trường này.
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script>
+      // JavaScript to enable Bootstrap validation and customize messages
+      (function() {
+          'use strict';
+          window.addEventListener('load', function() {
+              // Get the forms to apply custom Bootstrap validation styles
+              var forms = document.getElementsByClassName('needs-validation');
+              
+              Array.prototype.filter.call(forms, function(form) {
+                  form.addEventListener('submit', function(event) {
+                      if (form.checkValidity() === false) {
+                          event.preventDefault();
+                          event.stopPropagation();
+                      }
+                      form.classList.add('was-validated');
+                  }, false);
+              });
+              
+              // Customizing the required field message
+              var inputField = document.getElementById('exampleInput');
+              inputField.addEventListener('invalid', function() {
+                  this.setCustomValidity('This field cannot be left blank. Please provide a value.');
+              });
+              
+              // Reset the custom validation message when input changes
+              inputField.addEventListener('input', function() {
+                  this.setCustomValidity('');
+              });
+          }, false);
+      })();
+  </script>
+    <script src="/js/script.js"></script>
+    <script src="/js/loadSildeBar.js"></script>
+    <script src="/js/addIssue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <%- include('modue/footer') %>
+  </body>
+</html>

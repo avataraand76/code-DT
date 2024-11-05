@@ -1,0 +1,11 @@
+[
+  {
+    "date_start": "2024-10-09",
+    "product_cd": "dsfsdf",
+    "team": "team002",
+    "device": "device003",
+    "expected_record": "3423",
+    "actual_record": "234234",
+    "id_product_record": "1"
+  }
+]

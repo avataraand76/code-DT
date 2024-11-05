@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/nucleo-svg.css" />
+    <link rel="stylesheet" href="/css/nucleo-icons.css" />
+    <link rel="stylesheet" href="/css/soft-ui-dashboard.min.css" />
+    <link rel="stylesheet" href="/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+   
+  </head>
+  <body class="g-sidenav-show bg-gray-100">
+    <div style="display: none;">
+      <script>
+        var data = <%- JSON.stringify(data) %>;
+        var data_issue = <%- JSON.stringify(data_issue) %>;
+      </script>
+    <script>
+      var status_input = <%- status_input %>;
+      if (status_input === true) {
+        alert("Cập Nhật Vấn Đề Thành Công!!!");
+      }
+    </script>
+    </div>
+    <!-- Sidebar -->
+    <%- include('modue/sidebar') %>
+    <!-- Main Content -->
+    <main
+      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ps ps--active-y"
+    >
+      <!-- Header -->
+      <%- include('modue/header') %>
+      <!-- Screens -->
+      <div class="container-fluid">
+        <div class="row" id="form-search">
+          <form action="/danh_sach_van_de" method="get">
+            <div class="form-group mb-0">
+              <label for="textSearch">Nhập Thông Tin Tìm Kiếm</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                id="textSearch"
+                name="textSearch"
+                value="<%= data_search.textSearch %>"
+                placeholder="Tìm Kiếm"
+              />
+            </div>
+            <div class="form-group mb-0">
+              <label for="dateSearch" class="form-label">Chọn Ngày:</label>
+              <div class="display_align-items_center">
+                <input
+                  type="text"
+                  class="form-control form-control-sm col-5 txt_issue"
+                  id="dateSearch"
+                  name="dateSearch"
+                  value="<%= data_search.dateSearch %>"
+                  placeholder="Chọn ngày"
+                />
+                <button
+                  class="btn btn-primary btn-sm col-2 btn_issue"
+                  id="btnDateToDay"
+                >
+                  Today
+                </button>
+                <button
+                  class="btn btn-primary btn-sm col-2 btn_issue"
+                  id="btnClearDate"
+                >
+                  Clear
+                </button>
+                <button class="btn btn-outline-primary col-2 btn-sm btn_issue" type="submit">
+                  <i class="fas fa-search" style="font-size: medium;"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="showIssueDone" name="showIssueDone">
+              <label class="form-check-label" for="showIssueDone">Hiển thị vấn đề đã giải quyết</label>
+            </div>
+            <div class="form-group">
+              <div class="row display_align-items_center">
+                <div class="col-auto">
+                  <button class="btn btn-primary btn-sm float-left btn_issue" id="pre_page">
+                    <i class="bi bi-chevron-left" aria-hidden="true"style="font-size: medium;"></i>
+                  </button>
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-primary btn-sm float-right btn_issue" id="next_page">
+                    <i class="bi bi-chevron-right" aria-hidden="true"style="font-size: medium;"></i>
+                  </button>
+                </div>
+                <div class="col-3" style="padding-right: 0px;">
+                  <input type="number" class="form-control form-control-sm txt_issue" id="pageNumber" name="pageNumber" value="<%= data_search.pageNumber %>">
+                </div>
+                <div class="col-auto txt_issue" style="padding-left: 0px;">&nbsp;/&nbsp;<strong><%= data_search.totalPageNumber %></strong>&nbsp;&nbsp;Total:&nbsp;<%- total_issue %></div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="container-fluid py-4 scrollable-area" id="main_content">
+        <div class="row">
+          <div class="accordion" id="accordionExample">
+            <% data.forEach(function(item) { %>
+              <div class="accordion-item mb-1">
+                <h2 class="accordion-header" id="headingOne">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse_<%= item.id_issue %>"
+                    aria-expanded="true"
+                    aria-controls="collapseOne" style="display: block;padding-top: 2px;padding-bottom: 2px; word-break: break-all;"
+                  >
+                  <a class="mb-0 a-text">Mã Vấn Đề:&nbsp;</a><%= item.id_issue %><br/>
+                  <a class="mb-0 a-text">Team:&nbsp;</a><%= item.team %><br/>
+                  <a class="mb-0 a-text" >Mã sản phẩm:&nbsp;</a><%= item.transition_product?item.product_content:item.product %><br/>
+                  <a class="mb-0 a-text" >Mã Màu:&nbsp;</a><%= item.transition_color?item.color_content:item.color %><br/>
+                  <a class="mb-0 a-text">Thời Gian Bắt Đầu:&nbsp;</a><%= item.time_create %><br/>
+                  </button>
+                </h2>
+                <div
+                  id="collapse_<%= item.id_issue %>"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <strong>Thông tin chi tiêt:</strong><br/>
+                    <a class="mb-0 a-text" >Phạm vi:&nbsp;</a><%= item.type %><br/>
+                    <a class="mb-0 a-text" >Mô tả vấn đề:&nbsp;</a><%= item.description_issue %><br/>
+                    <div class="<%= item.description_issue.toLowerCase() == "khác"?"":"d-none" %>" >
+                      <a class="mb-0 a-text " >Vấn đề(Khác):&nbsp;</a><%= item.issue_other %><br/>
+                    </div>
+                    <a class="mb-0 a-text" >Người giải quyết:&nbsp;</a><%= item.problem_solver == null || item.problem_solver == undefined || item.problem_solver == ""?"Không xác định":item.problem_solver %><br/>
+                    <a class="mb-0 a-text" >Phương án giải quyết:&nbsp;</a><%= item.hdkp == null || item.hdkp == undefined || item.hdkp == ""?"Không xác định":item.hdkp %><br/>
+                    <a class="mb-0 a-text" >Thời gian kết thúc:&nbsp;</a><%= item.time_done == null || item.time_done == undefined || item.time_done == ""?"Không xác định":item.time_done %><br/>
+                    <a class="mb-0 a-text" >Người ghi nhận:&nbsp;</a><%= item.person_log_issue %><br/>
+                    <!-- Button trigger modal -->
+                     <div class="row mb-0">
+                      <button type="button" class="btn btn-primary open-modal-btn mb-0" data-toggle="modal" data-target="modalCenter" data-id-issue="<%= item.id_issue %>" style="float: right;">
+                        KẾT THÚC THỜI GIAN DOWNTIME
+                      </button>
+                     </div>
+                    
+                  </div>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Modal -->
+    <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle">
+      <div class="MuiBackdrop-root MuiModal-backdrop css-919eu4" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Chi tiết vấn đề</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalIssue">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="/danh_sach_van_de" method="post">
+            <div class="modal-body">
+              <label >Mã sản phẩm:&nbsp;</label><span id="productId"></span><br/>
+              <label >Mã Màu:&nbsp;</label><span id="colorId"></span><br/>
+              <label >Team:&nbsp;</label><span id="modalTeam"></span><br/>
+              <label >Máy:&nbsp;</label><span id="deviceId"></span><br/>
+              <div class="form-group">
+                <label for="typeIssueSelect">Chọn Loại Vấn Đề</label>              
+                <select class="form-control form-control-sm" id="typeIssueSelect" name="typeIssue" required>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="issueSelect">Chọn Vấn Đề</label>              
+                <select class="form-control form-control-sm" id="issueSelect" name="issue" required>
+                </select>
+                <input type="text" class="form-control form-control-sm txt_issue mt-2 d-none"
+                  id="inputissue" name="issueOther" placeholder="Nhập Vấn Đề" />
+              </div>
+              <div class="form-group">
+                <label for="problem_solver_id">Người giải quyết</label>              
+                <select class="form-control form-control-sm" id="problem_solver_id" name="problem_solver" required>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="hdkp_id">Phương án giải quyết</label>              
+                <select class="form-control form-control-sm" id="hdkp_id" name="hdkp" required>
+                </select>
+                <input type="text" class="form-control form-control-sm txt_issue mt-2 d-none"
+                  id="inputhdkp" name="hdkp_other" placeholder="Nhập Phương Án Giải Quyết Khác" />
+              </div>
+              <label>Thời gian bắt đầu:&nbsp;</label><span id="time_create_id"></span><br/>
+              <div class="form-group">
+                <label for="datePickerIssueDone" class="form-label">Thời gian giải quyết</label>
+                <input
+                    type="text"
+                    class="form-control form-control-sm txt_issue"
+                    id="datePickerIssueDone"
+                    placeholder="Chọn ngày"
+                    name="time_done" required
+                  />
+              </div>
+              <input type="hidden" name="id_issue" id="id_issue" value="">
+              <label>Người ghi nhận:&nbsp;</label><span id="person_log_issue_id"></span><br/>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" type="submit">Save changes</button>
+            </div>
+        </form>
+        </div>
+      </div>
+    </div>
+                    
+    
+    <script src="/js/script.js"></script>
+    <script src="/js/loadSildeBar.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#dateSearch").datepicker({
+          format: "yyyy/mm/dd", // Định dạng ngày
+          autoclose: true, // Đóng khi chọn ngày
+          todayHighlight: true, // Nổi bật ngày hôm nay
+        });
+        $("#datePickerIssueDone").datepicker({
+          format: "yyyy/mm/dd", // Định dạng ngày
+          autoclose: true, // Đóng khi chọn ngày
+          todayHighlight: true, // Nổi bật ngày hôm nay
+        });
+        $("#btnDateToDay").click((event)=>{
+          event.preventDefault();
+          const currentDate = new Date();
+          const year = currentDate.getFullYear();
+          const month = currentDate.getMonth() + 1; // Months are zero-based
+          const day = currentDate.getDate();
+          $("#dateSearch").val(`${year}/${month}/${day}`);
+        });
+        if(<%= data_search.pageNumber %> <= <%= data_search.totalPageNumber %> && <%= data_search.pageNumber %> <= 1){
+          $("#pre_page").attr({disabled:"disabled"});
+        }
+        if("<%= data_search.showIssueDone %>" == "on"){
+          $("#showIssueDone").prop('checked', true)
+        }
+        if(<%= data_search.pageNumber %> >= <%= data_search.totalPageNumber %>){
+          $("#next_page").attr({disabled:"disabled"});
+        }
+        $("#btnClearDate").click((event)=>{
+          event.preventDefault();
+          $("#dateSearch").val("");
+        });
+        $("#pre_page").click((event)=>{
+          $("#pageNumber").val(parseInt($("#pageNumber").val())-1);
+        });
+        $("#next_page").click((event)=>{
+          $("#pageNumber").val(parseInt($("#pageNumber").val())+1);
+        });
+      });
+    </script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <!-- Bootstrap Datepicker CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+    />
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/listIssue.js"></script>
+
+    <%- include('modue/footer') %>
+  </body>
+</html>

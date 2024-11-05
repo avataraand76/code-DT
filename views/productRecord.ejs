@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/nucleo-svg.css" />
+    <link rel="stylesheet" href="/css/nucleo-icons.css" />
+    <link rel="stylesheet" href="/css/soft-ui-dashboard.min.css" />
+    <link rel="stylesheet" href="/fontawesome-free/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> -->
+    
+  </head>
+  <body class="g-sidenav-show bg-gray-100">
+    <div style="display: none;">
+      <script>
+        var data = <%- JSON.stringify(data) %>;
+      </script>
+    </div>
+    <!-- Sidebar -->
+    <%- include('modue/sidebar') %>
+    <!-- Main Content -->
+    <main
+      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ps ps--active-y"
+    >
+      <!-- Header -->
+      <%- include('modue/header') %>
+      <!-- Screens -->
+      <div class="container-fluid py-4 scrollable-area" id="main_content">
+        <div class="row">
+          <form action="/them_ghi_nhan_san_luong" method="post">
+            <div class="form-group">
+              <label for="datePicker">Ngày sản xuất</label>
+              <input type="date" class="form-control form-control-sm" id="datePicker" name="date_start">
+            </div>
+            <div class="form-group">
+              <label for="inputProduct">Mã hàng</label>
+              <input type="text" class="form-control form-control-sm" id="inputProduct" name="product_cd">
+            </div>
+            <div class="form-group">
+              <label for="teamSelect">Chọn Team</label>
+              <select class="form-control form-control-sm" id="teamSelect" name="team" required>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="deviceSelect">Chọn Máy</label>
+              <select class="form-control form-control-sm" id="deviceSelect" name="device" required>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="expected_record">Sản lượng yêu cầu (logo)</label>
+              <input type="number" class="form-control form-control-sm" id="expected_record" name="expected_record">
+            </div>
+            <div class="form-group">
+              <label for="actual_record">Sản lượng thực tế (logo)</label>
+              <input type="number" class="form-control form-control-sm" id="actual_record" name="actual_record">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/addIssue.js"></script>
+    <script src="/js/loadSildeBar.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+     <!-- Bootstrap CSS -->
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+      />
+      <!-- Bootstrap Datepicker CSS -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+      />
+      <!-- Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <%- include('modue/footer') %>
+  </body>
+</html>

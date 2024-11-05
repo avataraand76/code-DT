@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="">
+    <div class="col-2 float-start" id="area_btn_insert"></div>
+    <div class="float-end col-5" id="area_search"></div></div>
+  </div>
+  <div class="">
+    <table id="<%= dataTable?.dataTableId %>" border="1" style="border-collapse: collapse"></table>
+    <script src="/js/generateTableHtml.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+      /* Container to control table's vertical scrolling */
+      #tableContainer {
+        position: relative;
+        max-width: 100%; /* Set the maximum height of the container */
+        overflow-x: scroll; /* Add vertical scrolling */
+
+        max-height: 600px;
+        overflow-y: scroll;
+      }
+      table {
+        border-collapse: collapse; /* Merge the table borders */
+      }
+      #area_btn_insert, #area_search{
+        padding: 0 !important;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        max-width: 300px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+
+      thead th {
+        position: sticky; /* Makes the header sticky */
+        top: 0; /* Stick to the top */
+        z-index: 1; /* Ensures the header is above the body */
+      }
+    </style>
+
+    <script>
+      // Sample data
+      var dataTable = <%- JSON.stringify(dataTable) %>;
+      // Generate the size col header table
+      var headerSize = dataTable?.headTable?.length;
+      // Get the row index
+      var rowIndex = -1;
+
+      var dataTableId = dataTable?.dataTableId;
+
+      var nameGetData = dataTable?.nameGetData;
+
+      // Get the element by its ID
+      const itemsidebar = document.getElementById('sidebar');
+
+      // Get the width of the element
+      const itemsidebarWidth = itemsidebar.offsetWidth;
+      const screenWidth = window.innerWidth;
+
+      const tableContainer = document.getElementById("tableContainer");
+      tableContainer.parentNode.parentNode.style.maxWidth = ""+(screenWidth - itemsidebarWidth - 20)+"px";
+
+      generateTable(dataTable);
+    </script>
+    <script src="/js/convertTableToJSON.js"></script>
+    <script src="/js/eventTable.js"></script>
+    <script src="/js/reloadTable.js"></script>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/nucleo-svg.css" />
+    <link rel="stylesheet" href="/css/nucleo-icons.css" />
+    <link rel="stylesheet" href="/css/soft-ui-dashboard.min.css" />
+    <link rel="stylesheet" href="/fontawesome-free/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> -->
+  </head>
+  <body class="g-sidenav-show bg-gray-100">
+    <!-- Sidebar -->
+    <%- include('modue/sidebar') %>
+    <!-- Main Content -->
+    <main
+      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ps ps--active-y"
+    >
+      <!-- Header -->
+      <%- include('modue/header') %>
+      <!-- Screens -->
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <a href="/ghi_nhan_van_de">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <h5 class="font-weight-bolder mb-0">Ghi Nhận Vấn đề</h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div
+                      class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md"
+                    >
+                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <a href="/danh_sach_van_de">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <h5 class="font-weight-bolder mb-0">Danh Sách Vấn Đề</h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div
+                      class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md"
+                    >
+                      <i
+                        class="ni ni-tablet-button text-lg opacity-10"
+                        aria-hidden="true"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <a href="/ghi_nhan_san_luong">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <h5 class="font-weight-bolder mb-0">Ghi Nhận Sản Lượng</h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div
+                      class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md"
+                    >
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/loadSildeBar.js"></script>
+    <%- include('modue/footer') %>
+  </body>
+</html>

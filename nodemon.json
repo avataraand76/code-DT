@@ -1,0 +1,8 @@
+{
+    "watch": ["common/", "controllers/", "models/", "routes/","views/"],  
+    "ignore": ["public/","data/"],
+    "ext": "js",
+    "exec": "node server.js",
+    "delay": "1000"
+  }
+  

@@ -1,0 +1,224 @@
+{
+  "team": [
+    { "key": "team001", "value": "Team 1 - LINH" },
+    { "key": "team002", "value": "Team 2 - ÂN" },
+    { "key": "team003", "value": "Team 3 - TÍN" },
+    { "key": "team004", "value": "Team 4 - SƠN" },
+    { "key": "team005", "value": "Team 5 - NGỌC" },
+    { "key": "team006", "value": "IN TAY" }
+  ],
+  "device": [
+    { "key": "device001", "value": "Machine 1" },
+    { "key": "device002", "value": "Machine 2" },
+    { "key": "device003", "value": "Machine 3" },
+    { "key": "device004", "value": "Machine 4" },
+    { "key": "device005", "value": "Machine 5" },
+    { "key": "device006", "value": "IN TAY" }
+  ],
+  "type_device": [
+    { "key": "type_device001", "value": "Máy in Oven" },
+    { "key": "type_device002", "value": "Máy sấy ( máy hong khô )" },
+    { "key": "type_device003", "value": "Máy ép nhiệt" },
+    { "key": "type_device004", "value": "Máy hơi" },
+    { "key": "type_device005", "value": "Bàn ủi đIện" },
+    { "key": "type_device006", "value": "Máy chiếu" },
+    { "key": "type_device007", "value": "Máy tính" },
+    { "key": "type_device008", "value": "Máy sấy cầm tay" }
+  ],
+  "type_issue": [
+    { "key": "type_issue001", "value": "Máy móc", "name": "issue_device", "hdkp":"hdkp_device"},
+    { "key": "type_issue002", "value": "Con người", "name": "issue_person", "hdkp":"hdkp_person" },
+    { "key": "type_issue003", "value": "Phương pháp", "name": "issue_procedure", "hdkp":"hdkp_procedure" },
+    {
+      "key": "type_issue004",
+      "value": "Vật tư ( màu, phụ liệu, vật liệu kho,..)", "name": "issue_material", "hdkp":"hdkp_material"
+    }
+  ],
+  "issue_device": [
+    { "key": "issue_device001", "value": "Máy bị sự cố không hoạt động" },
+    { "key": "issue_device002", "value": "Máy hư dây ổ cắm" },
+    { "key": "issue_device003", "value": "Lỗi phần mềm" },
+    { "key": "issue_device004", "value": "Máy hư dao" },
+    { "key": "issue_device005", "value": "Máy hư linh kiện" },
+    { "key": "issue_device006", "value": "Máy chưa được chuẩn bị" },
+    { "key": "issue_device007", "value": "Máy còn sử dụng cho mã hàng khác" },
+    { "key": "issue_device008", "value": "Rập chiếu bị hư" },
+    { "key": "issue_device009", "value": "Thiếu, mất hơi" },
+    { "key": "issue_device010", "value": "Máy hư bàn đạp trải vải" },
+    { "key": "issue_device011", "value": "Máy hư cần kéo mực" },
+    {
+      "key": "issue_device012",
+      "value": "Thay đổi vị trí ( máy hấp, khung in, cần in,.. )"
+    },
+    { "key": "issue_device013", "value": "Máy không có điện" },
+    { "key": "issue_device014", "value": "Khác" }
+  ],
+  "hdkp_device": [
+    { "key": "hdkp_device001", "value": "Cơ điện sửa máy tại chổ" },
+    { "key": "hdkp_device002", "value": "Đổi máy dự phòng" },
+    {
+      "key": "hdkp_device003",
+      "value": "Kỹ thuật, nhân viên nghiệp vụ điều chỉnh"
+    },
+    { "key": "hdkp_device004", "value": "Thông tin cho quản lý" },
+    { "key": "hdkp_device005", "value": "Nhờ máy khác sử dụng tạm thời" },
+    { "key": "hdkp_device006", "value": "Chờ người hỗ trợ, khắc phục" },
+    { "key": "hdkp_device007", "value": "Khác" }
+  ],
+  "issue_person": [
+    {
+      "key": "issue_person001",
+      "value": "Không thực hiện đúng thao tác ( châm màu, trải vải, gỡ vải,..)"
+    },
+    {
+      "key": "issue_person002",
+      "value": "Công nhân mới ( chưa được đào tạo )"
+    },
+    { "key": "issue_person003", "value": "Thiếu nhân lực" },
+    {
+      "key": "issue_person004",
+      "value": "Quản lí, tổ trưởng sắp xếp tiến độ in không phù hợp"
+    },
+    {
+      "key": "issue_person005",
+      "value": "Sai sót trong thiết lập máy móc thiết bị"
+    },
+    {
+      "key": "issue_person006",
+      "value": "Sai xót, thực hiện sai qui trình in"
+    },
+    { "key": "issue_person007", "value": "Sự cố an toàn lao động" },
+    { "key": "issue_person008", "value": "Thay đổi mẫu thiết kế file film" },
+    {
+      "key": "issue_person009",
+      "value": "Không bàn giao ca hoặc giao ca không rõ ràng gây ra downtime"
+    },
+    { "key": "issue_person010", "value": "Khác" }
+  ],
+  "hdkp_person": [
+    { "key": "hdkp_person001", "value": "Kỹ thuật hướng dẫn thao tác" },
+    {
+      "key": "hdkp_person002",
+      "value": "Kỹ thuật thiết lập lại các thông số máy"
+    },
+    {
+      "key": "hdkp_person003",
+      "value": "Kỹ thuật, nhân viên nghiệp vụ chỉnh máy"
+    },
+    { "key": "hdkp_person004", "value": "Sắp xếp người hổ trợ" },
+    {
+      "key": "hdkp_person005",
+      "value": "Kỹ thuật hướng dẫn và sắp xếp người hổ trợ"
+    },
+    {
+      "key": "hdkp_person006",
+      "value": "Hướng dẫn và kiểm tra chất lượng tại nguồn"
+    },
+    { "key": "hdkp_person007", "value": "Đào tạo, hướng dẫn lại công nhân" },
+    { "key": "hdkp_person008", "value": "Sửa hàng lỗi/hư" },
+    { "key": "hdkp_person009", "value": "Thay đổi qui trình in mới" },
+    { "key": "hdkp_person010", "value": "Họp triển khai lại" },
+    { "key": "hdkp_person011", "value": "Khác" }
+  ],
+  "issue_material": [
+    { "key": "issue_material001", "value": "Màu không cung cấp kịp thời" },
+    { "key": "issue_material002", "value": "Màu cung cấp sai" },
+    { "key": "issue_material003", "value": "Khác màu so với mẫu" },
+    {
+      "key": "issue_material004",
+      "value": "BTP in không có sẵn hoặc không cung cấp kịp thời"
+    },
+    {
+      "key": "issue_material005",
+      "value": "Thiếu vật tư, vật liệu, phụ liệu sản xuất"
+    },
+    { "key": "issue_material006", "value": "Khác" }
+  ],
+  "hdkp_material": [
+    { "key": "hdkp_material001", "value": "Đổi mã hàng; màu vải; màu in khác" },
+    { "key": "hdkp_material002", "value": "Chờ phòng màu cung cấp màu" },
+    { "key": "hdkp_material003", "value": "Phòng màu điều chỉnh màu" },
+    { "key": "hdkp_material004", "value": "Chờ quản lí; QA, QC inline duyệt" },
+    { "key": "hdkp_material005", "value": "Chờ kho cung cấp" },
+    { "key": "hdkp_material006", "value": "Khác" }
+  ],
+  "issue_procedure": [
+    { "key": "issue_procedure001", "value": "Qui trình in không phù hợp" },
+    { "key": "issue_procedure002", "value": "Chưa có qui trình in" },
+    { "key": "issue_procedure003", "value": "Qui trình đang là thử nghiệm" },
+    {
+      "key": "issue_procedure004",
+      "value": "Chưa chuẩn hóa thao tác chỉnh máy"
+    },
+    {
+      "key": "issue_procedure005",
+      "value": "Không có người hướng dẫn, hỗ trợ"
+    },
+    {
+      "key": "issue_procedure006",
+      "value": "Thiếu tiêu chuẩn, lưu ý công nhân trước khi sản xuất gây lỗi chất lượng"
+    },
+    {
+      "key": "issue_procedure007",
+      "value": "Thiếu phương pháp quản lí chất lượng"
+    },
+    {
+      "key": "issue_procedure008",
+      "value": "Lỗi chất lượng tại máy ( lem, lệch, nứt,..) phải dừng trải BTP để điều chỉnh"
+    },
+    {
+      "key": "issue_procedure009",
+      "value": "Sai sót trong quá trình chuẩn bị đầu tiên"
+    },
+    { "key": "issue_procedure010", "value": "Khác" }
+  ],
+  "hdkp_procedure": [
+    { "key": "hdkp_procedure001", "value": "Điều chỉnh lại qui trình in" },
+    { "key": "hdkp_procedure002", "value": "Bổ sung qui trình in" },
+    { "key": "hdkp_procedure003", "value": "Áp dụng qui trình in mới" },
+    { "key": "hdkp_procedure004", "value": "Họp triển khai lại" },
+    {
+      "key": "hdkp_procedure005",
+      "value": "Kỹ thuật, nhân viên nghiệp vụ chỉnh máy"
+    },
+    { "key": "hdkp_procedure006", "value": "Khác" }
+  ],
+  "problem_solver": [
+    { "key": "problem_solver001", "value": "Mr. Tang Wing Shing" },
+    { "key": "problem_solver002", "value": "Mr. ARNO" },
+    { "key": "problem_solver003", "value": "QL - Phan Văn Huy" },
+    { "key": "problem_solver004", "value": "QL - Nguyễn Văn Sĩ" },
+    { "key": "problem_solver005", "value": "QA- Võ Thị Hồng Châu" },
+    { "key": "problem_solver006", "value": "QC inline - Bùi Thị Cẩm Như" },
+    { "key": "problem_solver007", "value": "QC inline - Đỗ Thụy Kim Hồng" },
+    { "key": "problem_solver008", "value": "QC in line - Cao Ngọc Anh Thư" },
+    { "key": "problem_solver009", "value": "Leader Team 1 - LINH" },
+    { "key": "problem_solver010", "value": "Leader Team 2 - ÂN" },
+    { "key": "problem_solver011", "value": "Leader Team 3 - TÍN" },
+    { "key": "problem_solver012", "value": "Leader Team 4 - SƠN" },
+    { "key": "problem_solver013", "value": "Leader Team 5 - NGỌC" },
+    { "key": "problem_solver014", "value": "Cơ điện - Phạm Anh Tuấn " },
+    { "key": "problem_solver015", "value": "Phòng màu - Đặng Anh Tuấn" },
+    { "key": "problem_solver016", "value": "Phòng màu - Nguyễn Thanh Sơn" },
+    { "key": "problem_solver017", "value": "Kho - Đặng Tấn Tài" }
+  ],
+  "person_log_issue": [
+    { "key": "person_log_issue001", "value": "Mr. Tang Wing Shing" },
+    { "key": "person_log_issue002", "value": "Mr. ARNO" },
+    { "key": "person_log_issue003", "value": "QL - Phan Văn Huy" },
+    { "key": "person_log_issue004", "value": "QL - Nguyễn Văn Sĩ" },
+    { "key": "person_log_issue005", "value": "QA- Võ Thị Hồng Châu" },
+    { "key": "person_log_issue006", "value": "QC inline - Bùi Thị Cẩm Như" },
+    { "key": "person_log_issue007", "value": "QC inline - Đỗ Thụy Kim Hồng" },
+    { "key": "person_log_issue008", "value": "QC in line - Cao Ngọc Anh Thư" },
+    { "key": "person_log_issue009", "value": "Leader Team 1 - LINH" },
+    { "key": "person_log_issue010", "value": "Leader Team 2 - ÂN" },
+    { "key": "person_log_issue011", "value": "Leader Team 3 - TÍN" },
+    { "key": "person_log_issue012", "value": "Leader Team 4 - SƠN" },
+    { "key": "person_log_issue013", "value": "Leader Team 5 - NGỌC" },
+    { "key": "person_log_issue014", "value": "Cơ điện - Phạm Anh Tuấn " },
+    { "key": "person_log_issue015", "value": "Phòng màu - Đặng Anh Tuấn" },
+    { "key": "person_log_issue016", "value": "Phòng màu - Nguyễn Thanh Sơn" },
+    { "key": "person_log_issue017", "value": "Kho - Đặng Tấn Tài" }
+  ]
+}

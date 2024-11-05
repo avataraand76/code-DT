@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <script src="/socket.io/socket.io.js"></script>
+   
+</head>
+<body>
+    <h1>This is the Message Page</h1>
+    <a href="/">Home</a> | <a href="/users">User Table</a>
+
+    <ul id="messages"></ul>
+    <input id="input" autocomplete="off" /><button onclick="send()">Send</button>
+    <script>
+        const socket = io();
+
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+        const messages = document.getElementById('messages');
+        
+        function send(){
+            if (input?.value) {
+                socket.emit('chat message', input.value);
+                input.value = '';
+            }
+        }
+
+        socket.on('chat message', function(msg) {
+            const item = document.createElement('li');
+            item.textContent = msg;
+            messages.appendChild(item);
+        });
+    </script>
+</body>
+</html>
