@@ -16,7 +16,7 @@ exports.readFileJson = (pathFile) => {
 
 // 1. Add an item
 exports.addArray = (list, item) => {
-  if(list == undefined || list == null){
+  if (list == undefined || list == null) {
     list = [];
   }
   list.push(item);
@@ -43,40 +43,45 @@ exports.removeItemInArray = (list, id_value, id_name) => {
 exports.searchArray = (list, property, value) => {
   return list.filter((item) => {
     let valueItem = item[property];
-    if(value == undefined || value == null || value === "") return true;
-    if(valueItem != undefined && valueItem != null && valueItem.toLowerCase().indexOf(value.toLowerCase()) >=0) return true;
+    if (value == undefined || value == null || value === "") return true;
+    if (
+      valueItem != undefined &&
+      valueItem != null &&
+      valueItem.toLowerCase().indexOf(value.toLowerCase()) >= 0
+    )
+      return true;
     return false;
   });
 };
 exports.searchArrayEmpty = (list, property, value) => {
   return list.filter((item) => {
     let valueItem = item[property];
-    if(valueItem === value) return true;
+    if (valueItem === value) return true;
     return false;
   });
 };
 
-exports.mergeList = (list1, list2)=>{
-  list2.forEach(item2 => {
+exports.mergeList = (list1, list2) => {
+  list2.forEach((item2) => {
     // Kiểm tra xem id_issue của item2 có tồn tại trong list1 hay không
-    const exists = list1.some(item1 => item1.id_issue === item2.id_issue);
-    
+    const exists = list1.some((item1) => item1.id_issue === item2.id_issue);
+
     // Nếu không tồn tại, thêm item2 vào list1
     if (!exists) {
       list1.push(item2);
     }
   });
   return list1;
-}
+};
 
-exports.paginateList = (list, pageSize, pageNumber)=>{
+exports.paginateList = (list, pageSize, pageNumber) => {
   // Tính chỉ số bắt đầu và kết thúc của trang
   const start = (pageNumber - 1) * pageSize;
   const end = start + pageSize;
 
   // Trích xuất các phần tử tương ứng cho trang hiện tại
   return list.slice(start, end);
-}
+};
 
 // Hàm viết file với async/await
 async function writeToFile(filename, data) {
@@ -88,23 +93,23 @@ async function writeToFile(filename, data) {
   }
 }
 function getMaxId(list, id_name) {
-  if (list == undefined || list == null ||list.length === 0) return 0; // Nếu mảng trống
+  if (list == undefined || list == null || list.length === 0) return 0; // Nếu mảng trống
 
   const maxId = Math.max(...list.map((item) => parseInt(item[id_name])));
   return maxId;
 }
-exports.getCurrentDateTime = ()=>{
+exports.getCurrentDateTime = () => {
   const now = new Date();
 
   const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0, nên cộng thêm 1
-  const day = String(now.getDate()).padStart(2, '0');
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, "0"); // Tháng bắt đầu từ 0, nên cộng thêm 1
+  const day = String(now.getDate()).padStart(2, "0");
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
 
   return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
-}
+};
 
 // Function to write JSON to file
 exports.updateFile = (filename, data) => {
@@ -141,16 +146,17 @@ exports.removeIssueToFile = (data) => {
 };
 exports.convertFileJsonIssueToExcel = (mappedIssues) => {
   // Convert JSON data to a worksheet
-  const xlsx = require('xlsx');
-    // Đọc file Excel hiện có
+  const xlsx = require("xlsx");
+  // Đọc file Excel hiện có
   const workbook = xlsx.readFile(config.dataConfig.data_excel.path_save_file);
 
   // Lấy sheet đầu tiên từ workbook
   const sheetName = workbook.SheetNames[0];
-  const worksheet = workbook.Sheets[sheetName];
-  mappedIssues = mappedIssues.map(item => ({
+
+  // Map the data with Vietnamese headers
+  const mappedData = mappedIssues.map((item) => ({
     "Mã vấn đề": item.id_issue,
-    "Team": item.team,
+    Team: item.team,
     "Thiết bị": item.device,
     "Loại vấn đề": item.type,
     "Sản phẩm": item.product,
@@ -166,61 +172,70 @@ exports.convertFileJsonIssueToExcel = (mappedIssues) => {
     "Hướng Dẫn Khắc phục (Khác)": item.hdkp_other,
     "Người giải quyết vấn đề": item.problem_solver,
     "Người ghi nhận vấn đề": item.person_log_issue,
-    "Chuyển đổi màu sắc": item.transition_color
+    "Chuyển đổi màu sắc": item.transition_color,
   }));
-  // const worksheet = xlsx.utils.json_to_sheet(mappedIssues);
-  // Đổi tên các cột
-  // const columnNames = { A1: { v: "Tên" }, B1: { v: "Tuổi" }, C1: { v: "Thành Phố" } };
-  // Object.assign(worksheet, columnNames);
-  // Create a new workbook and append the worksheet
-  // const workbook = xlsx.utils.book_new();
-  // xlsx.utils.book_append_sheet(workbook, worksheet, 'Danh Sách Vấn Đề');
 
-  // Write the workbook to an Excel file
-  // console.log(config.dataConfig.data_excel.path_save_file);
+  // Create a new worksheet with the mapped data
+  const worksheet = xlsx.utils.json_to_sheet(mappedData);
 
-  // Chuyển đổi dữ liệu mới thành định dạng sheet
-  //const newWorksheet = xlsx.utils.json_to_sheet(mappedIssues, { skipHeader: true, origin: -1 });
+  // Replace the existing worksheet with the new one
+  workbook.Sheets[sheetName] = worksheet;
 
-  // Cập nhật worksheet cũ với dữ liệu mới
-  xlsx.utils.sheet_add_json(worksheet, mappedIssues, { skipHeader: true, origin: -1 });
+  // Write the workbook to file
   xlsx.writeFile(workbook, config.dataConfig.data_excel.path_save_file);
 
-  console.log('Excel file created successfully as output.xlsx');
-  };
+  console.log("Excel file updated successfully");
+};
 exports.mapDataIssue = (issue, mappings) => {
-  let type_issue = mappings.type_issue.find(t => t.key === issue.type);
+  let type_issue = mappings.type_issue.find((t) => t.key === issue.type);
   let product_content = "";
-  if(issue.transition_product){
-    product_content = "chuyển đổi Job: ".concat(issue.product).concat(" sang ").concat(issue.productnew);
+  if (issue.transition_product) {
+    product_content = "chuyển đổi Job: "
+      .concat(issue.product)
+      .concat(" sang ")
+      .concat(issue.productnew);
   }
   let color_content = "";
-  if(issue.transition_color){
-    color_content = "chuyển đổi Màu: ".concat(issue.color).concat(" sang ").concat(issue.colornew);
+  if (issue.transition_color) {
+    color_content = "chuyển đổi Màu: "
+      .concat(issue.color)
+      .concat(" sang ")
+      .concat(issue.colornew);
   }
   return {
     ...issue,
     product_content: product_content,
     color_content: color_content,
-    team: mappings.team.find(t => t.key === issue.team)?.value || issue.team,
-    device: mappings.device.find(d => d.key === issue.device)?.value || issue.device,
+    team: mappings.team.find((t) => t.key === issue.team)?.value || issue.team,
+    device:
+      mappings.device.find((d) => d.key === issue.device)?.value ||
+      issue.device,
     type: type_issue?.value || issue.type,
-    description_issue: mappings[type_issue?.name]?.find(di => di.key === issue.description_issue)?.value || issue.description_issue,
-    hdkp: mappings[type_issue?.hdkp]?.find(di => di.key === issue.hdkp)?.value || issue.hdkp,
-    person_log_issue: mappings.person_log_issue.find(p => p.key === issue.person_log_issue)?.value || issue.person_log_issue,
-    problem_solver: mappings.problem_solver.find(p => p.key === issue.problem_solver)?.value || issue.problem_solver
+    description_issue:
+      mappings[type_issue?.name]?.find(
+        (di) => di.key === issue.description_issue
+      )?.value || issue.description_issue,
+    hdkp:
+      mappings[type_issue?.hdkp]?.find((di) => di.key === issue.hdkp)?.value ||
+      issue.hdkp,
+    person_log_issue:
+      mappings.person_log_issue.find((p) => p.key === issue.person_log_issue)
+        ?.value || issue.person_log_issue,
+    problem_solver:
+      mappings.problem_solver.find((p) => p.key === issue.problem_solver)
+        ?.value || issue.problem_solver,
   };
 };
-exports.encodeStringToHtml = (text)=>{
+exports.encodeStringToHtml = (text) => {
   const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;',
-      '/': '&#47;'
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+    "/": "&#47;",
   };
-  return text?.replace(/[&<>"'/]/g, function(match) {
-      return map[match];
+  return text?.replace(/[&<>"'/]/g, function (match) {
+    return map[match];
   });
 };
